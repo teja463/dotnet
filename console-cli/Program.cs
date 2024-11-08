@@ -53,3 +53,22 @@ foreach (var num in greaterThan802)
 {
   Console.Write(num + ",");
 }
+Console.WriteLine();
+
+var teja = new Person("Teja", "P", new DateOnly(1989,06,06));
+Console.WriteLine(teja + "hello");
+
+class Person(){
+  
+  public Person(string firstname, string lastname, DateOnly dob): this(){
+    this.firstname = firstname;
+    this.lastname = lastname;
+    this.dob = dob;
+  }
+
+  private string firstname {get; set;}
+  private string lastname{get;set;}
+
+  private DateOnly dob {get;set;}
+}
+
