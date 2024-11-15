@@ -1,6 +1,6 @@
 ﻿using System;
 using ProjectA;
-
+using POLY = ProjectA.Polymorphism;
 class Program()
 {
     public static void Main()
@@ -10,7 +10,48 @@ class Program()
         PassByRef();
         OutParams();
         ClassDemo();
+        InheritanceDemo();
+        PolymorphismDemo();
+        PropertiesDemo();
+    }
 
+    private static void PropertiesDemo()
+    {
+        // 3 Different ways to intialize a object one with properites, another with constructor and another with {}
+        Properties properties = new Properties();
+        properties.Name = "Teja";
+        properties.Email = "Teja@gmail.com";
+        Console.WriteLine($" {properties.Name} {properties.Email} {properties.Country}");
+
+        Properties properties2 = new Properties("Test2@test.com", "Test2");
+        Console.WriteLine($" {properties2.Name} {properties2.Email} {properties2.Country}");
+
+        Properties properties3 = new Properties
+        {
+            Name = "Test3",
+            Email = "Test3@test.com"
+        };
+        Console.WriteLine($" {properties3.Name} {properties3.Email} {properties3.Country}");
+    }
+    private static void PolymorphismDemo()
+    {
+        POLY.Employee[] employees= new POLY.Employee[4];
+
+        employees[0] = new POLY.Employee("Test", "A");
+        employees[1] = new POLY.FullTimeEmployee("Test", "A");
+        employees[2] = new POLY.PartTimeEmployee("Test", "A");
+        employees[3] = new POLY.TemporaryEmployee("Test", "A");
+
+        foreach (var employee in employees)
+        {
+            employee.PrintName();
+        }
+    }
+
+    private static void InheritanceDemo()
+    {
+        BaseEmployee fte = new FullTimeEmployee("Teja", "P", 2324434);
+        fte.PrintName();
     }
 
     private static void ClassDemo()
