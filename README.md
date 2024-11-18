@@ -21,7 +21,7 @@
 - To use any namespace `using namesapce`
 - Classes should be placed in some namespace, like java classes should be put in a package
 
-> Check `Employee.cs` file for example
+> Check `Employee.cs` for example
 
 ## Classes
 
@@ -31,13 +31,13 @@
 - Destructor
 - `this()` to other constructors
 
-> Check `Employee.cs` file for examples
+> Check `Employee.cs` for examples
 
 ## Inheritance
 
 - To call super class constructors use `base()`
 
-> Check `Inheritance.cs` to check for examples
+> Check `Inheritance.cs` for examples
 
 ## Polymorphism
 
@@ -55,3 +55,18 @@
 
 - Similar to class but classes are reference types and structs are object types like primitive data types
 - Since structs are not reference types values are stored in stack, they behave similar to primitive data types
+
+## Interfaces
+
+- Everything similar to Java
+- Explicit interfaces 
+
+> Check `Interface.cs` for examples
+
+## Delegates
+
+- They are similar to Functional Interfaces, similar to how you can create a function interface and pass it as method parameter, you can do same using Delegates
+- In java they provide out of the box funtional interfaces for common tasks like Predicate, BiPredicate etc, but here you have to create your own that matches method signature
+- You can also use lambda expressions instead of creating the delegates
+
+> Check `Delegates.cs` for examples

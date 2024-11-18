@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using ProjectA;
 using POLY = ProjectA.Polymorphism;
 class Program()
@@ -13,6 +14,51 @@ class Program()
         InheritanceDemo();
         PolymorphismDemo();
         PropertiesDemo();
+        InterfaceDemo();
+        Program p = new Program(); ;
+        p.DelegateDemo();
+    }
+
+
+    public bool Promote(DelegateEmployee employee)
+    {
+        if(employee.Experience> 5)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private void DelegateDemo()
+    {
+        DelegateEmployee teja = new DelegateEmployee("Teja", 12);
+        DelegateEmployee ramya = new DelegateEmployee("Ramya", 2);
+        DelegateEmployee havish = new DelegateEmployee("Havish", 5);
+        List<DelegateEmployee> delegateEmployees = [ramya, havish, teja];
+
+        IsPromotedDelegate delegatedPromotion = new IsPromotedDelegate(Promote);
+
+        Delegates d = new Delegates();
+        d.PromoteEmployee(delegateEmployees, delegatedPromotion);
+
+        d.PromoteEmployee(delegateEmployees, emp => emp.Experience > 3);
+    }
+
+    private static void InterfaceDemo()
+    {
+        // Here the case is similar to java, both interfaces have same method and we are overriding it in a Class
+        IDemo1 ic1 = new ImplicitInterface();
+        ic1.print();
+        IDemo2 ic2 = new ImplicitInterface();
+        ic2.print();
+
+        /* But if you want to have two versions of the same method based on the interfac then you can do it via Explicit overriding
+         * You have to prefix the method name with interface name and .
+        */
+        IDemo1 ec1 = new ExplicitInterface();
+        ec1.print();
+        IDemo2 ec2 = new ExplicitInterface();
+        ec2.print();
     }
 
     private static void PropertiesDemo()
