@@ -17,8 +17,25 @@ class Program()
         InterfaceDemo();
         Program p = new Program(); ;
         p.DelegateDemo();
+        ExceptionsDemo();
+        EnumsDemo();
     }
 
+    private static void AccessModifiersDemo()
+    {
+        AccessModifiers a = new AccessModifiers();
+    }
+    private static void EnumsDemo()
+    {
+        Enums e = new Enums("Teja", Gender.Male);
+        Console.WriteLine($"{e.Name} {e.Gender}");
+    }
+
+    private static void ExceptionsDemo()
+    {
+        Exceptions e = new Exceptions();
+        e.demo();
+    }
 
     public bool Promote(DelegateEmployee employee)
     {

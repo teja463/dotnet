@@ -53,8 +53,8 @@
 
 ## Structs
 
-- Similar to class but classes are reference types and structs are object types like primitive data types
-- Since structs are not reference types values are stored in stack, they behave similar to primitive data types
+- Similar to class but classes are reference types and structs are value types like primitive data types
+- Since structs are value types they are stored in stack, they behave similar to primitive data types
 
 ## Interfaces
 
@@ -70,3 +70,24 @@
 - You can also use lambda expressions instead of creating the delegates
 
 > Check `Delegates.cs` for examples
+
+## Exception Handling
+
+- Same as Java
+- InnerExceptions is new
+- CustomException
+
+- > Check `Exceptions.cs`
+- 
+## Enums
+
+- Same as Java, but you can't have String values assigned to enums like `Male("M")`
+
+- > Check `Enums.cs`
+
+## Access Modifiers
+
+- Classes can have only 2 modifiers _public_ and _internal_, if you dont specify modifier default is **internal**
+- For properties and methods _public_, _private_, _protected_, _internal_ and _protected internal_, if no modifier is mentioned default is **private**
+
+> Check `AccessModifiers.cs`
