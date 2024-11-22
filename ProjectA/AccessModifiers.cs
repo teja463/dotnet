@@ -12,14 +12,15 @@ class AccessEmployee
 
 class FullAccessEmployee : AccessEmployee
 {
+    [Obsolete]
     public void PrintName()
     {
         Console.WriteLine(Name);
     }
 }
-class AccessModifiers
+public class AccessModifiers
 {
-    public static void Access()
+    public void Access()
     {
         FullAccessEmployee fullAccessEmployee = new FullAccessEmployee();
         fullAccessEmployee.Name = "Teja";

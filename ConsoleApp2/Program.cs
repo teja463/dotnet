@@ -19,11 +19,39 @@ class Program()
         p.DelegateDemo();
         ExceptionsDemo();
         EnumsDemo();
+        AccessModifiersDemo();
+        ReflectionsDemo();
+        GenericsDemo();
+        EqualsHashCodeDemo();
+    }
+
+    private static void EqualsHashCodeDemo()
+    {
+        ToStringEqualsEtc one = new ToStringEqualsEtc("Teja", "Test");
+        ToStringEqualsEtc two = new ToStringEqualsEtc("Teja", "Test");
+        Console.WriteLine(one.Equals(two));
+        Console.WriteLine(one == two);
+
+    }
+
+    private static void GenericsDemo()
+    {
+        Generics generics = new Generics();
+        Console.WriteLine("Equals: " + generics.IsEqual(10, 10));
+        GenericClass<int> genericClass = new GenericClass<int>();
+        Console.WriteLine("Equals: " + genericClass.IsEqual(10, 10));
+    }
+
+    private static void ReflectionsDemo()
+    {
+        Reflections r = new Reflections();
+        r.Sample();
     }
 
     private static void AccessModifiersDemo()
     {
         AccessModifiers a = new AccessModifiers();
+        a.Access();
     }
     private static void EnumsDemo()
     {
@@ -39,7 +67,7 @@ class Program()
 
     public bool Promote(DelegateEmployee employee)
     {
-        if(employee.Experience> 5)
+        if (employee.Experience > 5)
         {
             return true;
         }
@@ -98,7 +126,7 @@ class Program()
     }
     private static void PolymorphismDemo()
     {
-        POLY.Employee[] employees= new POLY.Employee[4];
+        POLY.Employee[] employees = new POLY.Employee[4];
 
         employees[0] = new POLY.Employee("Test", "A");
         employees[1] = new POLY.FullTimeEmployee("Test", "A");
@@ -132,7 +160,7 @@ class Program()
         int a = 20;
         int b = 30;
         int mul = 0;
-        int sum= 0;
+        int sum = 0;
         UseOutParams(a, b, out sum, out mul);
         Console.WriteLine($"Sum is {sum} Multiple is {mul}");
     }
@@ -146,7 +174,7 @@ class Program()
         Console.WriteLine($" a {a}  b {b}");
     }
 
-    
+
     private static void NullCoalescing()
     {
         int? count = 2;

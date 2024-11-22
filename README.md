@@ -91,3 +91,18 @@
 - For properties and methods _public_, _private_, _protected_, _internal_ and _protected internal_, if no modifier is mentioned default is **private**
 
 > Check `AccessModifiers.cs`
+
+## Attributes
+
+- These are same as `Annotations` in Java
+- You can use them witt the notation `[]` e.g. to mark a method as obselete use `[Obselete]`
+
+## Reflection
+
+- Similar to Java you can use reflection to get information about class, its methods, construtors, properties etc
+- You can also create the class dynamically using Reflection and also invoke the methods and change property values
+- This way of creating a class using Reflection is called Late Binding
+
+## Generics
+
+- 
