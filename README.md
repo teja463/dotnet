@@ -103,6 +103,12 @@
 - You can also create the class dynamically using Reflection and also invoke the methods and change property values
 - This way of creating a class using Reflection is called Late Binding
 
-## Generics
+## Generics, Hascode, Equals, ToString
 
-- 
+- Same as in Java
+
+## Partial Classes and Methods
+
+- You can physically write code in two different files using `partial` keyword and compiler will treat it as single file during run time
+
+

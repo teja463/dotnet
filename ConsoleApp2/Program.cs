@@ -1,6 +1,4 @@
-﻿using System;
-using System.Runtime.CompilerServices;
-using ProjectA;
+﻿using ProjectA;
 using POLY = ProjectA.Polymorphism;
 class Program()
 {
@@ -23,6 +21,13 @@ class Program()
         ReflectionsDemo();
         GenericsDemo();
         EqualsHashCodeDemo();
+        PartialDemo();
+    }
+
+    private static void PartialDemo()
+    {
+        PartialClass p = new PartialClass("Test", "Desc");
+        p.PrintDetails();
     }
 
     private static void EqualsHashCodeDemo()
