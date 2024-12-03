@@ -1,4 +1,14 @@
-# Notes
+
+# Dotnet Basics
+
+## Application Execution
+
+- Similar to Java .NET compiles the code into an Intermediate Language(IL) (byte code in Java) and this IL is execute by Common Language Runtime (CLR) (similar to JVM in Java)
+- When you install .NET Framework (like Java) it comes with System Libraries (like JDK) and the CLR (like JVM)
+- CLR has Garbage Collection
+
+
+# C Sharp Basics
 
 ## Data types
 
@@ -111,4 +121,32 @@
 
 - You can physically write code in two different files using `partial` keyword and compiler will treat it as single file during run time
 
+## Indexes
+
+- Special methods created using `this` keyword, you can also overload them and create multiple methods using different method signature
+- Used for using classes as object to store some values without needing to call extra methods
+
+> Check `Indexers.cs`
+
+## Default and Params in Methods
+
+- You can pass any number of arguments to methods using the `params` keyword,it is similar to varargs in java `String...args`
+- You can also assign default values to method params similar to JavaScript
+
+## Collections
+
+- List, Dictionar (map in java), Stack Queue
+- We can use generic types like Java
+- Iterating over collections, etc same
+- You can return ReadOnly Collections using a class to prevent modifications
+
+> Check `ListAndDictionary.cs`
+
+## Multithreading
+
+- Threads are represented by `Thread` class, you can pass a method a s parameter to the thread class to run that method in a separate thread
+- You can also use Lambda expressions to the Thread constructor
+- You can use `Async Await` keywords to run the code in a separate thread and return results when its done, to return result you should wrap return in `Task` class
+
+> Check `Threads.cs`
 

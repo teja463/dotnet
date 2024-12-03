@@ -13,8 +13,10 @@ class Program()
         PolymorphismDemo();
         PropertiesDemo();
         InterfaceDemo();
+
         Program p = new Program(); ;
         p.DelegateDemo();
+
         ExceptionsDemo();
         EnumsDemo();
         AccessModifiersDemo();
@@ -22,6 +24,52 @@ class Program()
         GenericsDemo();
         EqualsHashCodeDemo();
         PartialDemo();
+        IndexerDemo();
+        ParamsDemo();
+        CollectionsDemo();
+        ThreadsDemo();
+        Console.WriteLine("Main Thread finished");
+    }
+
+    private static async void ThreadsDemo()
+    {
+        Threads t = new Threads();
+        Thread thread = new Thread(t.LongTask);
+        Thread thread2 = new Thread(() =>
+        {
+            Console.WriteLine("Another Thread");
+        });
+        thread2.Start();
+        thread.Start();
+        int v = await t.AsyncTask();
+        Console.WriteLine("V " + v);
+    }
+
+    private static void CollectionsDemo()
+    {
+        ListAndDictionary listAndDictionary = new ListAndDictionary();
+        listAndDictionary.Demo();
+    }
+
+    private static void ParamsDemo()
+    {
+        Console.WriteLine("**************ParamsDemo");
+        MethodParams p = new MethodParams();
+        Console.WriteLine("Sum: " + p.SumParams(1, 2));
+        Console.WriteLine("Sum: " + p.SumParams(1, 2, 3, 4, 5, 6));
+
+        Console.WriteLine("Default: " + p.DefaultValues(1));
+        Console.WriteLine("Default: " + p.DefaultValues(1, 3));
+        Console.WriteLine("Default: " + p.DefaultValues(1, c: 4));
+        Console.WriteLine("**************ParamsDemo");
+    }
+
+    private static void IndexerDemo()
+    {
+        Indexers indexers = new Indexers();
+        Console.WriteLine(indexers[1]);
+        indexers[1] = "Teja";
+        Console.WriteLine(indexers[1]);
     }
 
     private static void PartialDemo()
