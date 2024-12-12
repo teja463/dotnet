@@ -22,3 +22,9 @@
 - [Comparing Web Forms and MVC](https://learn.microsoft.com/en-us/archive/msdn-magazine/2009/brownfield/dino-esposito-on-comparing-web-forms-with-asp-net-mvc)
 - [ASP.NET MVC In a Nutshell](https://learn.microsoft.com/en-us/archive/msdn-magazine/2008/march/asp-net-mvc-building-web-apps-without-web-forms)
 
+### ASP.NET Razor
+
+- In the MVC project type you have a controller and view separatley
+- When you create a razor type project there is no controller class separatlye, the .cshtml file itself act as a view and a controller
+- It is done by using the code behind .cs file where you can write the code
+- [Good notes on the MVC vs Razor Comparison](https://www.reddit.com/r/csharp/comments/18met8r/what_is_the_difference_between_mvc_and_razor/)

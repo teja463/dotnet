@@ -3,6 +3,7 @@
 - [.NET Basics](dotnet-basics.md)
 - [C# Basics](csharp.md)
 - [ASP.NET](asp.net.md)
+- [ADO.NET](ado.net.md)
 
 ## Evolution
 
@@ -11,8 +12,8 @@
 Classic ASP
   -> ASP.NET Web Forms
     -> ASP.NET MVC
-      -> Razor Pages (templating engine)
-        -> Blazor (component based)
+      -> Razor Pages
+        -> Blazor
 
 ### Database
 
