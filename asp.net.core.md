@@ -41,7 +41,7 @@
 - This will run on a server called **Kestral**
 - You can change the behavior by right clicking on the project -> edit project file and write below 
 
-```bash
+```
   <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
 ```
