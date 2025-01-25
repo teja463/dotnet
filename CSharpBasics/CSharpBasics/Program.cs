@@ -1,7 +1,5 @@
 ﻿using ProjectA;
-using System.Reflection;
-using System.Threading;
-using System;
+using CSharpExamples;
 using POLY = ProjectA.Polymorphism;
 class Program()
 {
@@ -30,8 +28,17 @@ class Program()
         IndexerDemo();
         ParamsDemo();
         CollectionsDemo();
+        ExtensionMethodsDemo();
         ThreadsDemo();
         Console.WriteLine("Main Thread finished");
+        
+    }
+
+    private static void ExtensionMethodsDemo()
+    {
+        string s = "Hello";
+        s = s.AddTeja();
+        Console.WriteLine("Extended String : "+ s);
     }
 
     private static async void ThreadsDemo()
