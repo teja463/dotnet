@@ -1,10 +1,12 @@
 ﻿using HPlusSport.API.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Asp.Versioning;
 
 namespace HPlusSport.API.Controllers;
 
-[Route("api/[controller]")]
+[ApiVersion("1.0")]
+[Route("api/v{version:apiVersion}/[controller]")]
 [ApiController]
 public class ProductsController : ControllerBase
 {
@@ -82,6 +84,37 @@ public class ProductsController : ControllerBase
         shopContext.Remove(product);
         shopContext.SaveChanges();
         return Ok(product);
+    }
+
+    [HttpGet("Pagination")]
+    public ActionResult<Product> ProductsWithPagination([FromQuery] int page, int size)
+    {
+       return Ok(shopContext.Products.Skip(size * (page -1 )).Take(size).ToList());
+    }
+
+    [HttpGet("simple-filter")]
+    public List<Product> FilterProducts([FromQuery] ProductQueryParams req)
+    {
+        return shopContext.Products.Where(p => p.Price >= req.MinPrice && p.Price <= req.MaxPrice).ToList();
+    }
+
+    [HttpGet("advanced-filter")]
+    public List<Product> AdvancedFilterProducts([FromQuery] ProductQueryParams req)
+    {
+
+        IQueryable<Product> products = shopContext.Products;
+
+        if (req.MinPrice != null)
+        {
+            products = products.Where(p => p.Price >= req.MinPrice);
+        }
+
+        if (req.MaxPrice != null)
+        {
+            products = products.Where(p => p.Price <= req.MaxPrice);
+        }
+
+        return products.ToList();
     }
 
     [HttpGet("available")]
