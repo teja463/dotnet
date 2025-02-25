@@ -4,6 +4,7 @@ using EntityFrameworkConsoleProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EntityFrameworkConsoleProject.Migrations
 {
     [DbContext(typeof(MyDBContext))]
-    partial class MyDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250225115126_test")]
+    partial class test
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,7 +54,7 @@ namespace EntityFrameworkConsoleProject.Migrations
 
                     b.HasIndex("userId");
 
-                    b.ToTable("Address", (string)null);
+                    b.ToTable("Address");
                 });
 
             modelBuilder.Entity("EntityFrameworkConsoleProject.Models.Customer", b =>
@@ -81,7 +84,7 @@ namespace EntityFrameworkConsoleProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers", (string)null);
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("EntityFrameworkConsoleProject.Models.Order", b =>
@@ -108,7 +111,7 @@ namespace EntityFrameworkConsoleProject.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("EntityFrameworkConsoleProject.Models.OrderDetail", b =>
@@ -134,7 +137,7 @@ namespace EntityFrameworkConsoleProject.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderDetails", (string)null);
+                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("EntityFrameworkConsoleProject.Models.Product", b =>
@@ -154,7 +157,7 @@ namespace EntityFrameworkConsoleProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("EntityFrameworkConsoleProject.Models.User", b =>
@@ -174,7 +177,7 @@ namespace EntityFrameworkConsoleProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("EntityFrameworkConsoleProject.Models.Address", b =>

@@ -9,6 +9,10 @@ public class User
 
     public string? Phone { get; set; }
 
+    public ICollection<Address> Addresses { get; set; } = new List<Address>();
 
-
+    public override string? ToString()
+    {
+        return $"{Id} - {Name} - ${Phone}";
+    }
 }

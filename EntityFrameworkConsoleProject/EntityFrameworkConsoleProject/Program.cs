@@ -1,27 +1,49 @@
 ﻿using EntityFrameworkConsoleProject.Data;
 using EntityFrameworkConsoleProject.Models;
+using Microsoft.EntityFrameworkCore;
 
 // For Creating and saving entries in Database
 
 using MyDBContext db = new MyDBContext();
 
-CreateData();
-ReadData();
-UpdateData();
-ReadData();
-DeleteData();
+//CreateData();
+//ReadData();
+//UpdateData();
+//ReadData();
+//DeleteData();
 
 UserDemo();
 
 void UserDemo()
 {
-    User teja = new User()
+    Random random = new() { };
+
+    /*User teja = new User()
     {
-        Name = "Teja",
-        Phone = "98794687"
+        Name = $"Teja {random.Next(100)}",
+        Phone = $"9879462{random.Next(10)}"
     };
     db.Users.Add(teja);
-    db.SaveChanges();
+    db.SaveChanges();*/
+
+
+
+    /* Address address = new Address()
+     {
+         State = "TG",
+         Country = "IN",
+         UserId = 1
+     };
+
+     db.Address.Add(address);
+     db.SaveChanges();*/
+
+    User? user = db.Users.Include(u => u.Addresses).Where(u => u.Id == 1).FirstOrDefault();
+    Console.WriteLine(user);
+    foreach (var item in user.Addresses)
+    {
+        Console.WriteLine(item);
+    }
 }
 
 void CreateData()
