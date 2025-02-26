@@ -18,3 +18,7 @@
 
 ## Second Approach
 
+- Tools -> NuGet Package Manger -> Package Manger Console, from the default project dropdown select the project you want to have entities created and execute below command
+`Scaffold-DbContext "Data Source=.;Initial Catalog=ContosoPizza2;Integrated Security=True;TrustServerCertificate=True;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -ContextDir Data -OutputDir Models -Verbose`
+- This will create the entities and DBContext class
+- By Default it will add the column metadata and entity one-one or one-many mapping inside the DbContext class, but if you want to have them inside the entity class itself pass the argument `-DataAnnotations` at the end
