@@ -16,25 +16,22 @@ UserDemo();
 
 void UserDemo()
 {
-    Random random = new() { };
+    /*Random random = new() { };
 
-    /*User teja = new User()
+    User teja = new User()
     {
         Name = $"Teja {random.Next(100)}",
         Phone = $"9879462{random.Next(10)}"
     };
     db.Users.Add(teja);
-    db.SaveChanges();*/
-
-
-
-    /* Address address = new Address()
+    Address address = new Address()
      {
          State = "TG",
          Country = "IN",
          UserId = 1
      };
 
+    address.User = teja;
      db.Address.Add(address);
      db.SaveChanges();*/
 
