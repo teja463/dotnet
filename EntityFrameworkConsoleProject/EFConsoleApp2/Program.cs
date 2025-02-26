@@ -4,9 +4,17 @@ using Microsoft.EntityFrameworkCore;
 
 using MyDBContext database = new MyDBContext();
 
-User user = database.User.Include(a => a.Posts).Where(u => u.Id == 1).First();
-Console.WriteLine($"{user.Name} {user.Email}");
-foreach (var post in user.Posts)
+List<User> users = database.User.Include(a => a.Posts).ToList();
+
+foreach (var user in users)
 {
-    Console.WriteLine($"\t {post.Title} {post.Summary}");
+    Console.WriteLine($"{user.Name} {user.Email}");
+    if (user.Posts.Any())
+    {
+        foreach (var post in user.Posts)
+        {
+            Console.WriteLine($"\t {post.Title} {post.Summary}");
+        }
+    }
 }
+
