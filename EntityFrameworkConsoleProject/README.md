@@ -1,5 +1,7 @@
 ﻿# Notes
 
+> [Video Tutorial for all this solution](https://www.youtube.com/playlist?list=PLdo4fOcmZ0oX7uTkjYwvCJDG2qhcSzwZ6)
+
 - There are two approaches for creating the Entities Entity Framework. 
 - First one is Entity first approach. First you create the entities along with relationship between them using the navigation classes and then use the commands `Add-Migration` to create the migration file where you can review the sql script that is going to be created once you are fine then execute `Update-Database` to create the tables on the SQL Server
 - Second approach is to create the entities based on the existing database schema,
