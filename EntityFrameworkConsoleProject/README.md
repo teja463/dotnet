@@ -43,3 +43,40 @@
 - Now this will create the CRUD pages for user entity automatically
 - Now we have linked the EF Core with Razoar pages
 
+## Performance Tips
+
+### AsNoTracking
+
+- When we query for any data in EF Core, it maintains a snapshot of the resultset, when we make any changes to the results we are actually making changes to the snapshot
+- Once we save the changes using *db.SaveChanges()* these will be written to the database
+- If you are just quering for readonly data then it doesn't make sense to track them. To disable tracking add `.AsNoTracking()` to the query
+- `_context.Users.AsNoTracking().ToList();`
+
+### Navigational Properies - Eager Loading
+
+- When we have one to many or any other relationships in entities, we will have navigational properties to represent them
+- When you are quering User which has post entity inside it, if you want to retreive posts also along with user entity then use *.Include(u => u.Post)* to retreive all the post along with users
+- `_context.Users.Include(u => u.Posts).ToList();`
+
+### Navigational Properies - Lazy Loading
+
+- If you want use Lazy Loading install NuGet package *Microsoft.EntityFrameworkCore.Proxies*
+- Make the Navigatioal properties as virtual so that they can be overriden at runtime `public virtual ICollection<Post> Posts { get; set; } = new List<Post>();`
+- In the Program.cs add *UseLazyLoadingProxies* when configuring the DBContext
+```csharp
+builder.Services.AddDbContext<ContosoPizza2Context>(options =>
+{
+    options
+    .UseLazyLoadingProxies()
+    .UseSqlServer(builder.Configuration.GetConnectionString("ContosoPizza"));
+});
+```
+- Now when only when you try to access the posts object inside User object a separate query will be fired to retreive the posts data
+
+### AsSplitQuery
+
+- When Eager loading the navigational entities it uses Left join to retreive the data, this can cause performance issues if the table has more data
+- To avoid this we can tell EF core to fire multiple single queries to do this add *.AsSplitQuery()*
+- `_context.Users.Include(u => u.Posts).AsSplitQuery().ToList();`
+
+> Check *UserSqlRaw*, *UseSQLInterlation* to write native SQL queries

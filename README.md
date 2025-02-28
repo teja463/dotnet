@@ -5,6 +5,7 @@
 - [ASP.NET](asp.net.md)
 - [ADO.NET](ado.net.md)
 - [ASP.NET Core](asp.net.core.md)
+- [Entity Framework Core](./EntityFrameworkConsoleProject/README.md)
 
 ## Evolution
 

@@ -10,7 +10,9 @@ Console.WriteLine("Con"+ builder.Configuration.GetConnectionString("ContosoPizza
 
 builder.Services.AddDbContext<ContosoPizza2Context>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ContosoPizza"));
+    options
+    .UseLazyLoadingProxies()
+    .UseSqlServer(builder.Configuration.GetConnectionString("ContosoPizza"));
 });
 
 var app = builder.Build();

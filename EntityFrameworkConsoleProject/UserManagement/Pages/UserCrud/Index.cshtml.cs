@@ -24,6 +24,11 @@ namespace UserManagement.Pages.UserCrud
         public async Task OnGetAsync()
         {
             User = await _context.Users.ToListAsync();
+            foreach (var user in User)
+            {
+                ICollection<Post> posts = user.Posts;
+                Console.WriteLine(posts.Count());
+            }
         }
     }
 }

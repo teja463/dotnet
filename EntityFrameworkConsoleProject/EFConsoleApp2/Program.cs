@@ -3,11 +3,11 @@ using EFConsoleApp2.Data;
 using Microsoft.EntityFrameworkCore;
 
 using MyDBContext database = new MyDBContext();
-
-List<User> users = database.User.Include(a => a.Posts).ToList();
+List<User> users = database.User.Include(a => a.Posts).AsNoTracking().ToList();
 
 foreach (var user in users)
 {
+    user.Name = user.Name + "@@@";
     Console.WriteLine($"{user.Name} {user.Email}");
     if (user.Posts.Any())
     {
@@ -18,3 +18,4 @@ foreach (var user in users)
     }
 }
 
+database.SaveChanges();
