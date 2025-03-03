@@ -80,3 +80,7 @@ builder.Services.AddDbContext<ContosoPizza2Context>(options =>
 - `_context.Users.Include(u => u.Posts).AsSplitQuery().ToList();`
 
 > Check *UserSqlRaw*, *UseSQLInterlation* to write native SQL queries
+
+### DB Pooling
+
+- To use Connection pooling in *Program.cs* use `builder.Services.AddDbContextPool` isntead of `builder.Services.AddDbContext`
