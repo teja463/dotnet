@@ -21,13 +21,13 @@ public class UsersController : ControllerBase
     [HttpGet]
     public List<User> FindAllUsers()
     {
-        return myDbContext.User.ToList();
+        return myDbContext.Users.Include(u => u.UserPosts).ToList();
     }
 
     [HttpGet("{id}")]
     public ActionResult<User> FindUserById(int id)
     {
-        User? user = myDbContext.User.Find(id);
+        User? user = myDbContext.Users.Find(id);
         if(null== user)
         {
             return NotFound();
@@ -39,7 +39,7 @@ public class UsersController : ControllerBase
     [HttpPost]
     public ActionResult<User> AddUser([FromBody] User user)
     {
-        myDbContext.User.Add(user);
+        myDbContext.Users.Add(user);
         myDbContext.SaveChanges();
         return user;
     }
@@ -57,13 +57,13 @@ public class UsersController : ControllerBase
     [HttpDelete("{id}")]
     public ActionResult DeleteUser(int id)
     {
-        User? user = myDbContext.User.Find(id);
+        User? user = myDbContext.Users.Find(id);
         if(null == user)
         {
             return NotFound();
         }
 
-        myDbContext.User.Remove(user);
+        myDbContext.Users.Remove(user);
         myDbContext.SaveChanges();
 
         return Ok(user);
