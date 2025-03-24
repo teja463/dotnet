@@ -1,0 +1,12 @@
+﻿<h2>MyView</h2>
+
+@{
+    var names = new List<string> {"one", "two","three"};
+}
+
+<ul>
+    @foreach(var name in names)
+    {
+        <li>@name</li>
+    }
+</ul>
