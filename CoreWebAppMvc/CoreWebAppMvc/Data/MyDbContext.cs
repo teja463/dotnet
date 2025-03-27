@@ -9,7 +9,18 @@ public class MyDbContext : DbContext
     {
     }
 
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        
+        modelBuilder.Entity<SerialNumber>().HasData(
+            new SerialNumber {Id=1,  Name="HDD1", ItemId =1 }
+            );
+        Console.WriteLine("On Model Creating..............");
+    }
+
     public DbSet<Item> Items { get; set; }
+
+    public DbSet<SerialNumber> SerialNumbers { get; set; }
 
 
 }
