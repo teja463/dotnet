@@ -1,6 +1,7 @@
 ﻿using CoreWebAppMvc.Data;
 using CoreWebAppMvc.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace CoreWebAppMvc.Controllers;
@@ -18,17 +19,18 @@ public class ItemsController : Controller
 
     public IActionResult Index()
     {
-        var items = dbContext.Items.Include(i => i.SerialNumber).ToList();
+        var items = dbContext.Items.Include(i => i.SerialNumber).Include(i => i.Category).ToList();
         return View(items);
     }
 
     public IActionResult Create()
     {
+        ViewData["Categories"] = new SelectList(dbContext.Categories, "Id", "Name");
         return View();
     }
 
     [HttpPost]
-    public IActionResult Create([Bind("Id, Name, Price")] Item item)
+    public IActionResult Create([Bind("Id, Name, Price, CategoryId")] Item item)
     {
         if (ModelState.IsValid)
         {
@@ -42,12 +44,13 @@ public class ItemsController : Controller
 
     public IActionResult Edit(int id)
     {
+        ViewData["Categories"] = new SelectList(dbContext.Categories, "Id", "Name");
         Item? dbItem = dbContext.Items.Find(id);
         return View(dbItem);
     }
 
     [HttpPost]
-    public IActionResult Edit(int id, [Bind("Id, Name, Price")] Item item)
+    public IActionResult Edit(int id, [Bind("Id, Name, Price, CategoryId")] Item item)
     {
 
         if (ModelState.IsValid)

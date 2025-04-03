@@ -3,6 +3,7 @@ using CoreWebAppMvc.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CoreWebAppMvc.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250402070249_User-Address-One-to-One")]
+    partial class UserAddressOnetoOne
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,33 +24,21 @@ namespace CoreWebAppMvc.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("CoreWebAppMvc.Models.Category", b =>
+            modelBuilder.Entity("CoreWebAppMvc.Models.Address", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
+                    b.Property<string>("City")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Country")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Electronics"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Books"
-                        });
+                    b.ToTable("Addresses");
                 });
 
             modelBuilder.Entity("CoreWebAppMvc.Models.Item", b =>
@@ -57,9 +48,6 @@ namespace CoreWebAppMvc.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -72,8 +60,6 @@ namespace CoreWebAppMvc.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
 
                     b.ToTable("Items");
                 });
@@ -110,13 +96,35 @@ namespace CoreWebAppMvc.Migrations
                         });
                 });
 
-            modelBuilder.Entity("CoreWebAppMvc.Models.Item", b =>
+            modelBuilder.Entity("CoreWebAppMvc.Models.User", b =>
                 {
-                    b.HasOne("CoreWebAppMvc.Models.Category", "Category")
-                        .WithMany("Items")
-                        .HasForeignKey("CategoryId");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Navigation("Category");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("AddressId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("User", (string)null);
+                });
+
+            modelBuilder.Entity("CoreWebAppMvc.Models.Address", b =>
+                {
+                    b.HasOne("CoreWebAppMvc.Models.User", "User")
+                        .WithOne("Address")
+                        .HasForeignKey("CoreWebAppMvc.Models.Address", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("CoreWebAppMvc.Models.SerialNumber", b =>
@@ -128,14 +136,14 @@ namespace CoreWebAppMvc.Migrations
                     b.Navigation("Item");
                 });
 
-            modelBuilder.Entity("CoreWebAppMvc.Models.Category", b =>
-                {
-                    b.Navigation("Items");
-                });
-
             modelBuilder.Entity("CoreWebAppMvc.Models.Item", b =>
                 {
                     b.Navigation("SerialNumber");
+                });
+
+            modelBuilder.Entity("CoreWebAppMvc.Models.User", b =>
+                {
+                    b.Navigation("Address");
                 });
 #pragma warning restore 612, 618
         }
