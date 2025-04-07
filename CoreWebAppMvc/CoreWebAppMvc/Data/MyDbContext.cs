@@ -11,7 +11,16 @@ public class MyDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        
+
+        modelBuilder.Entity<ItemClient>().HasKey(ic => new
+        {
+            ic.ItemId,
+            ic.ClientId
+        });
+
+        modelBuilder.Entity<ItemClient>().HasOne(ic => ic.Item).WithMany(i => i.ItemClients).HasForeignKey(ic => ic.ItemId);
+        modelBuilder.Entity<ItemClient>().HasOne(ic => ic.Client).WithMany(c => c.ItemClients).HasForeignKey(ic => ic.ClientId);
+
         modelBuilder.Entity<SerialNumber>().HasData(
             new SerialNumber {Id=1,  Name="HDD1", ItemId =1 }
             );
@@ -28,5 +37,8 @@ public class MyDbContext : DbContext
 
     public DbSet<Category> Categories { get; set; }
 
+    public DbSet<Client> Clients { get; set; }
+
+    public DbSet<ItemClient> ItemClients { get; set; }
 
 }

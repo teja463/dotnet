@@ -19,7 +19,7 @@ public class ItemsController : Controller
 
     public IActionResult Index()
     {
-        var items = dbContext.Items.Include(i => i.SerialNumber).Include(i => i.Category).ToList();
+        var items = dbContext.Items.Include(i => i.SerialNumber).Include(i => i.Category).Include(i => i.ItemClients).ThenInclude(ic => ic.Client).ToList();
         return View(items);
     }
 

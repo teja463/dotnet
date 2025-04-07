@@ -1,6 +1,8 @@
 ﻿@using CoreWebAppMvc.Models;
 @model List<Item>
-
+@{
+    ViewData["Title"] = "Items List";
+}
 <h2>Items</h2>
 <a asp-action="Create" class="btn btn-dark">Create an Item</a>
 <table class="table table-striped">
@@ -9,8 +11,9 @@
             <th>ID</th>
             <th>Name</th>
             <th>Price</th>
-            <th>Serial Number</th>
-            <th>Category</th>
+            <th>Serial Number(1-1)</th>
+            <th>Category(1-M)</th>
+            <th>Client(M-M)</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -23,6 +26,12 @@
                 <td>$ @item.Price</td>
                 <td>@item.SerialNumber?.Name</td>
                 <td>@item.Category?.Name</td>
+                <td>
+                @foreach(var IC in item.ItemClients)
+                {
+                    @IC.Client?.Name
+                }
+                </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
                     <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
